@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { MapsComponent } from './maps/maps.component';
 import {AgmCoreModule} from "@agm/core";
 import {AgmDirectionModule} from "agm-direction";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import {FormsModule} from "@angular/forms";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import {AgmDirectionModule} from "agm-direction";
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyBWNCWizzY1UcYKTG8bzSQxV-gSerIojjg'
     }),
-    AgmDirectionModule
+    AgmDirectionModule,
+    MatSlideToggleModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import {Component, ElementRef, NgZone, OnInit, ViewChild} from '@angular/core';
 import {} from 'googlemaps';
 import {MapsAPILoader} from "@agm/core";
+import {LocationService} from "../../services/location.service";
 let map: google.maps.Map, infoWindow: google.maps.InfoWindow;
 
 @Component({
@@ -27,7 +28,7 @@ export class MapsComponent implements OnInit {
   private geoCoder: any;
   @ViewChild('map', { static: true }) mapElement: any;
   map: google.maps.Map | undefined;
-
+  id: any;
   public markerOptions = {
     origin: {
       infoWindow: 'This is origin.',
@@ -45,22 +46,42 @@ export class MapsComponent implements OnInit {
   }
 
     constructor(private mapsAPILoader: MapsAPILoader,
-                    private ngZone: NgZone) { }
+                    private ngZone: NgZone, public locationService: LocationService) { }
 
   ngOnInit(): void {
-    this.mapsAPILoader.load().then(() => {
-      this.setCurrentLocation();
-      this.geoCoder = new google.maps.Geocoder;
-    });
+    // setInterval(()=> {
+      this.mapsAPILoader.load().then(() => {
+        this.geoCoder = new google.maps.Geocoder;
+        this.setCurrentLocation();
+      });
+    // },   5000);
+
+  }
+  toggle(event: any) {
+   console.log(event);
+   if (event.checked) {
+    this.id = setInterval(()=> {
+     this.mapsAPILoader.load().then(() => {
+       this.geoCoder = new google.maps.Geocoder;
+       this.setCurrentLocation();
+     });
+     },   5000);
+   }
+   else {
+     clearInterval(this.id);
+   }
+
   }
 
 
 
-  private setCurrentLocation() {
+  setCurrentLocation() {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
+        console.log(this.latitude, 'this.latitude');
+        console.log(this.longitude, 'this.longitude');
         this.zoom = 8;
         // this.origin = {lat : this.lat, lng: this.lng}
         // this.getAddress(this.latitude, this.longitude);
@@ -72,9 +93,47 @@ export class MapsComponent implements OnInit {
           draggable: true,
           label: 'origin'
         });
-        this.origin = {lat : this.lat, lng: this.lng}
+        // this.origin = {lat : this.lat, lng: this.lng}
+          let data = {
+              "_id": "6314f49001258c733195f200",
+              "currentLocation": {
+                  "type": "Point",
+                  "coordinates": [this.latitude, this.longitude]
+              },
+              "vin": "TN30BF3907",
+              "insurancePolicyNumber": "AI02004002",
+              "make": "BharatBenz",
+              "model": "HDT T 4023T",
+              "year": 2021,
+              "ladenWeight": 3000,
+              "weightUnit": "KG",
+              "fuelInformation": {
+                  "fuelType": "DIESEL",
+                  "fuelCapacity": 120,
+                  "fuelUnit": "L",
+                  "mileage": 5,
+                  "mileageUnit": "KM",
+                  "currentFuelStat": 40
+              },
+              "capacity": 5,
+              "kilometersRun": 15000,
+              "tyres": 14,
+              "color": "Blue",
+              "materialType": "DRY",
+              "driverId": "adithyakrish21@gmail.com",
+              "_class": "com.vrp.vehicleservice.collections.Vehicle"
+          };
+          this.locationService.updateDriverLocation(data).subscribe(
+              (successData) => {
+                  console.log(successData, 'successData');
+              },
+              (error) => {
+                  console.log(error, 'error');
+              }
+          );
       });
     }
+
   }
 
   getAddress(latitude: any, longitude: any) {
