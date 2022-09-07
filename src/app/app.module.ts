@@ -15,6 +15,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatInputModule} from "@angular/material/input";
 import {BottomNavigationBarComponent} from "./bottom-navigation-bar/bottom-navigation-bar.component";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import {BottomNavigationBarComponent} from "./bottom-navigation-bar/bottom-navig
     MatToolbarModule,
     MatIconModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatInputModule
   ],
   providers: [],

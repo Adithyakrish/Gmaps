@@ -46,3 +46,28 @@
 <!--<h5>Address: {{address}}</h5>-->
 <!--<div>Latitude: {{latitude}}</div>-->
 <!--<div>Longitude: {{longitude}}</div>-->
+<footer>
+  <mat-toolbar class="toolbarNav" style="color: #FFF;background-color: #0196FA;">
+    <button
+            mat-flat-button
+            routerLink="/home"
+            routerLinkActive="active-link"
+            style="color: #FFF;background-color: #0196FA;"
+    >
+      <mat-icon class="material-icons color_blue">home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button
+            mat-flat-button
+            class="navigate"
+            style="color: #FFF;background-color: #0196FA;"
+    >
+      <mat-icon class="material-icons color_blue">format_list_bulleted</mat-icon>
+      <span>Navigate</span>
+    </button>
+    <button mat-flat-button routerLink="/my-account" routerLinkActive="active-link" style="color: #FFF;background-color: #0196FA;">
+      <mat-icon class="material-icons color_blue">account_circle</mat-icon>
+      <span>My Account</span>
+    </button>
+  </mat-toolbar>
+</footer>

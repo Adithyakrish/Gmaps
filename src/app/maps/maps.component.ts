@@ -31,6 +31,8 @@ export class MapsComponent implements OnInit {
   @ViewChild('map', { static: true }) mapElement: any;
   map: google.maps.Map | undefined;
   id: any;
+  toggleButton = true;
+  status = 'Enable';
   public markerOptions = {
     origin: {
       infoWindow: 'This is origin.',
@@ -149,7 +151,9 @@ export class MapsComponent implements OnInit {
       ];
 
   }
-
+  enableDisableRule() {
+    this.toggleButton = !this.toggleButton;
+  }
   getAddress(latitude: any, longitude: any) {
     this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results: { formatted_address: any; }[], status: string) => {
       if (status === 'OK') {
