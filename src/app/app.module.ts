@@ -9,11 +9,19 @@ import {AgmDirectionModule} from "agm-direction";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {ToolBarComponent} from "./tool-bar/tool-bar.component";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
+import {MatInputModule} from "@angular/material/input";
+import {BottomNavigationBarComponent} from "./bottom-navigation-bar/bottom-navigation-bar.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    MapsComponent
+    MapsComponent,
+    ToolBarComponent,
+    BottomNavigationBarComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +33,11 @@ import {HttpClientModule} from "@angular/common/http";
     MatSlideToggleModule,
     FormsModule,
     HttpClientModule,
-    AgmDirectionModule
+    AgmDirectionModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
