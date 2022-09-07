@@ -3,6 +3,7 @@
 Enable to get location for every 5 seconds!
 </mat-slide-toggle>
 <br>
+<!--<h4>Distance : {{distance}}Kms</h4>-->
 <p></p>
 
 <!--&lt;!&ndash; this creates a google map on the page with the given lat/lng from &ndash;&gt;-->
@@ -28,7 +29,8 @@ Enable to get location for every 5 seconds!
   <agm-direction
     [origin]="origin"
     [destination]="destination"
-    [provideRouteAlternatives]="provideRouteAlternatives"
+    [waypoints]="waypoints"
+    [optimizeWaypoints]="true"
     [travelMode]="travelMode"
   >
   </agm-direction>

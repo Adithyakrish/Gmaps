@@ -24,7 +24,8 @@ import {HttpClientModule} from "@angular/common/http";
     AgmDirectionModule,
     MatSlideToggleModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AgmDirectionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
